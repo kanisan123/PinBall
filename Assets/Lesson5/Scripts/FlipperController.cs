@@ -24,25 +24,27 @@ public class FlipperController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //左矢印キーを押した時左フリッパーを動かす
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && tag == "LeftFripperTag")
+        if (CompareTag("LeftFripperTag"))
         {
-            SetAngle(flickAngle);
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                SetAngle(flickAngle);
+            }
+            else
+            {
+                SetAngle(defaultAngle);
+            }
         }
-        //右矢印キーを押した時右フリッパーを動かす
-        if (Input.GetKeyDown(KeyCode.RightArrow) && tag == "RightFripperTag")
+        else if (CompareTag("RightFripperTag"))
         {
-            SetAngle(flickAngle);
-        }
-
-        //矢印キー離された時フリッパーを元に戻す
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && tag == "LeftFripperTag")
-        {
-            SetAngle(defaultAngle);
-        }
-        if (Input.GetKeyUp(KeyCode.RightArrow) && tag == "RightFripperTag")
-        {
-            SetAngle(defaultAngle);
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                SetAngle(flickAngle);
+            }
+            else
+            {
+                SetAngle(defaultAngle);
+            }
         }
     }
 
